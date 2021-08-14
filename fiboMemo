@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+unsigned long long int fv[1000]={0,};
+
+unsigned long long int  Fibo(int n) {
+	
+	if(fv[n] != 0 ) return fv[n];
+	else {
+		if(n==1 || n==2) { fv[n]=1; }
+		else { 	fv[n] = Fibo(n-1) + Fibo(n-2); 	}	
+	return fv[n];
+	}
+}
+
+int main()
+{
+	printf("%llu", Fibo(100));
+	return 0;
+}
+ 
+
+
