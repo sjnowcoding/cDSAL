@@ -1,0 +1,39 @@
+#include <stdio.h>
+void swap(int A[], int ia, int ib) {
+	int t=A[ia];  A[ia] = A[ib]; A[ib] = t;	
+}
+
+void q(int a[], int left, int right) {
+	int pl = left;
+	int pr = right;
+	int x = a[(pl+pr)/2];
+	do {
+		while(a[pl] < x ) pl++;
+		while(a[pr] > x ) pr--;
+	
+		if(pl <= pr) {
+			swap(a,pl, pr);
+			pl++;
+			pr--;
+			}
+	}while(pl <= pr);
+	
+	if(left<pr) q(a, left, pr);
+	if(pl<right) q(a, pl, right);
+	
+}
+
+int main()
+{
+	int S[]={43,22,61,53,10,26,4,8};
+
+	q(S,0,8-1);
+	
+	//출력하기 
+	printf("\n-----------\n");	
+	for(int i=0; i<8; i++)
+	printf("%d ", S[i]);
+
+ return 0;
+ }
+ 
