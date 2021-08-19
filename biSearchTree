@@ -1,0 +1,41 @@
+#include <stdio.h>
+struct tnode {
+	int L;
+	int data;
+	int R;
+};
+typedef struct tnode Tnode;
+
+int main() {
+
+	Tnode a[100] ={ {1, 185, 2},
+	                {3, 169, 4},
+	                {5, 190, -1},
+					{-1,155,-1},
+					{6, 175, 7},
+					{-1, 188, -1},
+					{-1, 170, -1},
+					{-1, 176, -1} };
+
+	int d, p=0;
+	printf("찾는데이타입력:"); 
+	scanf ("%d", &d);
+	
+	while(p != -1) {
+		//끝 단에는 -1이 존재한다 
+		if (a[p].data == d){
+			printf("찾았습니다.");
+			break;
+		}
+		else {
+			if( d< a[p].data ) { p = a[p].L;}
+			else { p = a[p].R; }
+		}
+		printf("%d\n", p); 
+	}
+	
+	if(p == -1) { printf("못찾았습니다");} 
+				 
+	return 0;
+}
+	
