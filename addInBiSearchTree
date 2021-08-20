@@ -1,0 +1,43 @@
+#include <stdio.h>
+struct tnode {
+	int L;
+	int data;
+	int R;
+};
+typedef struct tnode Tnode;
+
+int main() {
+
+	Tnode a[100] ={ {1, 185, 2},
+	                {3, 169, 4},
+	                {5, 190, -1},
+					{-1,155,-1},
+					{6, 175, 7},
+					{-1, 188, -1},
+					{-1, 170, -1},
+					{-1, 176, -1} };
+	int d, p=0;
+	printf("추가할 데이타입력:"); 
+	scanf ("%d", &d);
+	a[8].L = a[8].R = -1; a[8].data = d;
+
+	int destination; 
+	while(p != -1) { // 8을 기록할 노드 찾기 
+		destination = p; 
+		if (d <= a[p].data ) { p = a[p].L;}
+		else { p = a[p].R;}
+	}
+ 
+ 	//찾은 노드의 왼쪽과 오른쪽 중에 어디에 기록할지 
+	if(d<=a[destination].data) 
+		a[destination].L = 8;
+	else 
+		a[destination].R = 8;
+				 
+	for(int i=0; i<9; i++) {
+		printf("%d: %d %d %d\n", i, a[i].L, a[i].data, a[i].R);
+	}
+	
+	return 0;
+}
+	
