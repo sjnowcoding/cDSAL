@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h> 
+
+typedef struct tnode Tnode;
+
+struct tnode { 
+	Tnode * left;
+	char name[20];
+	Tnode * right;
+};
+
+Tnode * nodeAlloc() {
+	Tnode * temp ;
+	temp = (Tnode *) calloc( 1, sizeof(Tnode) );
+	temp->left = temp->right=NULL;
+	return temp;
+	
+}
+
+void printname(Tnode *A) {
+
+	
+	printf("%s\n", A->name);
+	
+	if(A->left != NULL) 	
+		printname(A->left);
+	if(A->right != NULL)
+		printname(A->right);
+		
+	
+}
+
+
+int main( ) {
+	char dat[20];
+	Tnode *root, *p, *old;
+	
+	root = nodeAlloc();
+	printf("root name:");
+	scanf("%s", root->name);
+	printf("name:");
+			
+	while( scanf("%s", dat) != EOF ) {
+		p = root;
+		while (p != NULL) {
+			old = p;
+			if (strcmp(dat, p->name) <=0 )
+				p = p->left;
+			else 
+				p = p->right;
+		
+	}
+		p = nodeAlloc();
+		strcpy(p->name , dat);
+			
+		if (strcmp( dat, old->name) <=0 ) 
+			old->left = p;
+		else 
+			old->right = p;
+		printf("name:");
+	}
+	
+	printname(root);
+	
+	
+	return 0;
+}
+	
+	
+	
