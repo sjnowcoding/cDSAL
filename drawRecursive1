@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct tnode Tnode;
+struct tnode{
+	int d;
+	Tnode *right;
+};
+
+Tnode * TnodeAlloc() {
+	Tnode * temp;
+	temp = (Tnode *) calloc(1, sizeof(Tnode));	
+	temp->right = NULL;
+	return temp;
+}
+
+Tnode * A( Tnode *p, int n) {
+		
+		if (p == NULL) {
+			p = TnodeAlloc();
+			p->d = n;	
+		}
+		
+		else {
+			p->right = A( p->right, n);
+		}
+		return p;
+}
+
+void pData(Tnode * a) {
+	
+	printf("%d ", a->d);
+	if(a->right != NULL) pData(a->right);
+		
+}
+
+
+int main()
+{
+	Tnode * root = NULL;
+	int n;
+	while (scanf("%d", &n) != EOF) {
+		root = A( root, n);
+	}
+	
+	pData(root);
+	
+	return 0;
+}
