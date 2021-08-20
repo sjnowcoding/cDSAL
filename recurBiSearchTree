@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct tnode Tnode;
+struct tnode {
+	Tnode * left;
+	char name[20];
+	Tnode * right;
+};
+
+Tnode * tnodeAlloc() {
+	Tnode * temp;
+	temp = (Tnode *) calloc(1, sizeof(Tnode));
+	temp->left = temp->right = NULL;
+	return temp;
+}
+
+Tnode *makeTree( Tnode *p, char * n) {
+	
+	if (p == NULL) {
+		p=tnodeAlloc();
+		strcpy(p->name , n);
+	}
+	else if (strcmp(n, p->name) < 0) 
+		p->left = makeTree(p->left, n);
+	else
+		p->right =makeTree(p->right, n);
+	
+	return p;
+}
+
+void printName(Tnode *p) {
+	printf("%s\n", p->name);
+	if (p->left != NULL){ printName(p->left); }
+	if (p->right != NULL) { printName(p->right); }		
+		
+}
+
+
+int main() {
+	char key[20];
+	Tnode * root, * p;
+	root = NULL;
+	while ( scanf("%s", key) != EOF) {
+		root = makeTree(root, key);
+		printf("root address:%d\n", root);
+	
+	}
+	
+	printName(root);
+	
+	
+	return 0;
+}
