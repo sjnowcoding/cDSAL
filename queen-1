@@ -12,7 +12,6 @@ void setQueen(int col) {
 	
 	for(int j=0; j<8; j++) {
 		pos[col]=j;
-		
 		if(col==7) print();
 		else setQueen(col+1);
 	}
