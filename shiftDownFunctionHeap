@@ -1,0 +1,50 @@
+#include <stdio.h>
+void swap(int *, int *);
+void shiftDown(int, int, int *);
+
+int main() {
+	int h[100];
+	int i, n, m;
+	n=1;
+	
+	while (  scanf("%d", &h[n]) != EOF)
+		n++;
+	
+	n--;
+	for(i = n/2 ; i>=1 ; i--) 
+		shiftDown(i, n, h);
+	
+	m=n;
+	while(n>1) {
+		swap(&h[1], &h[n]);
+		n--;
+		shiftDown(1,n,h);
+	}
+	
+	for(i=1; i<=m; i++)
+		printf("%d ", h[i]);
+		
+	
+	return 0;
+}
+
+void shiftDown( int p, int n, int heap[])
+{
+	int s;
+	s = 2*p;
+	while ( s<=n) {
+		if( s<n && heap[s+1] < heap[s]) s++;
+		if (heap[p] <= heap[s]) { break;}
+		else {
+			swap( &heap[p], &heap[s]);
+			p=s; s=2*p;
+		}
+	}
+}
+
+void swap(int * a, int * b){
+	int t = *(a);
+	*(a) = *(b);
+	*(b) = t;
+}
+
