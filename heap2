@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main() {
+	int h[1000];
+	int i,n,p,c,t;
+	
+	n=1;
+	while (scanf("%d", &h[n]) != EOF)
+		n++;
+	
+	n--;
+	for(i = n/2; i>=1; i--) {
+		p=i;
+		c=2*p;
+		
+		while (c <= n) {
+			
+			if( c<n && h[c+1] < h[c]) c++;
+			
+			if(h[p] > h[c]) {
+				t = h[p]; h[p]=h[c]; h[c]=t;
+				p=c;
+				c=2*p;
+			}
+			else {
+				break;	
+			}
+			
+		}
+		
+	}
+	for(i=1; i<=n; i++)
+		printf("%d ", h[i]);
+	
+	return 0;
+}
+	
+	
+	
