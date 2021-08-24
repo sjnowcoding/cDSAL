@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <windows.h>
 int pos[8];
 
 void print() {
@@ -12,7 +12,7 @@ void setQueen(int col) {
 	
 	for(int j=0; j<8; j++) {
 		pos[col]=j;
-		if(col==7) print();
+		if(col==7){ print(); Sleep(1000);   }
 		else setQueen(col+1);
 	}
 }
