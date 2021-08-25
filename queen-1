@@ -1,26 +1,27 @@
 #include <stdio.h>
 #include <windows.h>
-int pos[8];
+int Qp[4]; //Queen position
 
-void print() {
-	for(int i=0; i<8; i++)
-		printf("%2d", pos[i]);
+void printQp() {
+	for(int i=0; i<4; i++) 
+		printf("%2d", Qp[i]);
+	
 	printf("\n");
+	Sleep(1000);
 }
 
-void setQueen(int col) {
-	
-	for(int j=0; j<8; j++) {
-		pos[col]=j;
-		if(col==7){ print(); Sleep(1000);   }
-		else setQueen(col+1);
+void setQ(int c) {
+	for(int j=0; j<4; j++) {
+		//col의 0행 ~3행까지 차례차례 추가한다  
+		Qp[c]=j;
+		
+		if(c==3) printQp();
+		else setQ(c+1);
 	}
 }
 
 int main() {
-	setQueen(0);
+	setQ(0);
 	return 0;
 }
-
-
-	
+		
